@@ -22,7 +22,9 @@ jobs:
         with:
           domain: ${{github.repository_owner}}
       - name: Testspace push test content
-        run: testspace "[${{ github.workflow }}/${{ github.job }}]./testcontent/*.xml"
+        run: |
+          - testspace "[${{ github.workflow }}/${{ github.job }}]./testcontent/*.xml"
+          - exit 1
   fan-in-job:
     runs-on: ubuntu-latest
     needs: [this-job, that-job]
